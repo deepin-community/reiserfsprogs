@@ -1,0 +1,39 @@
+#! /usr/bin/make -f
+
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
+
+#include /usr/share/cdbs/1/rules/simple-patchsys.mk
+
+# These are used for cross-compiling and for saving the configure script
+# from having to guess our platform (since we know it already)
+DEB_HOST_GNU_TYPE ?= $(shell dpkg-architecture -qDEB_HOST_GNU_TYPE)
+DEB_BUILD_GNU_TYPE ?= $(shell dpkg-architecture -qDEB_BUILD_GNU_TYPE)
+
+#export DEB_CFLAGS_MAINT_APPEND  = -std=gnu90
+
+DEB=reiserfsprogs
+SMALLUDEB=mkreiserfs-udeb
+FULLUDEB=reiserfsprogs-udeb
+
+ifeq (,$(findstring nostrip,$(DEB_BUILD_OPTIONS)))
+	INSTALL_PROGRAM += -s
+endif
+
+%:
+	dh $@ 
+
+override_dh_auto_configure:
+	dh_auto_configure -- --disable-shared --disable-static
+
+override_dh_install:
+	dh_install
+	install -m 755 debian/fsck.reiserfs debian/$(DEB)/sbin
+	install -m 755 debian/hooks/reiserfsprogs debian/$(DEB)/usr/share/initramfs-tools/hooks
+	dh_link -p$(DEB) usr/share/man/man8/mkreiserfs.8.gz usr/share/man/man8/mkfs.reiserfs.8.gz
+	dh_link -p$(DEB) usr/share/man/man8/reiserfsck.8.gz usr/share/man/man8/fsck.reiserfs.8.gz
+#	sed -i "/dependency_libs/ s/'.*'/''/" "$(CURDIR)/debian/reiserfsprogs/usr/lib/<la-file>"
+#	sed -i "/dependency_libs/ s/'.*'/''/" `find . -name '*.la'`
+
+#override_dh_makeshlibs:
+#	dh_makeshlibs --add-udeb=mkreiserfs-udeb

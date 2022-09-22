@@ -1,0 +1,2 @@
+usr/sbin/mkreiserfs       sbin
+usr/sbin/mkfs.reiserfs    sbin

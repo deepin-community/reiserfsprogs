@@ -1,0 +1,4 @@
+usr/sbin/fsck.reiserfs    sbin/
+usr/sbin/reiserfsck       sbin/
+usr/sbin/resize_reiserfs  sbin/
+usr/sbin/debugreiserfs    sbin/

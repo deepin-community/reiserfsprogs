@@ -1,0 +1,9 @@
+usr/sbin/mkfs.reiserfs    sbin/
+usr/sbin/mkreiserfs       sbin/
+usr/sbin/reiserfsck       sbin/
+usr/sbin/resize_reiserfs  sbin/
+usr/sbin/debugreiserfs    sbin/
+usr/sbin/reiserfstune     sbin/
+usr/sbin/debugfs.reiserfs sbin/
+usr/sbin/tunefs.reiserfs  sbin/
+usr/share/man/man8/*      usr/share/man/man8/
