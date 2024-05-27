@@ -2,32 +2,36 @@ Source: reiserfsprogs
 Section: admin
 Priority: optional
 Maintainer: Felix Zielcke <fzielcke@z-51.de>
-Build-Depends: debhelper-compat (= 13), uuid-dev, comerr-dev, libacl1-dev
-Standards-Version: 4.5.0
+Build-Depends: comerr-dev, debhelper-compat (= 13), libacl1-dev, uuid-dev
+Standards-Version: 4.6.2
+Rules-Requires-Root: no
 
 Package: reiserfsprogs
 Architecture: linux-any
-Depends: ${shlibs:Depends}, ${misc:Depends}
+Depends: libreiserfscore0 (= ${binary:Version}),
+         ${misc:Depends},
+         ${shlibs:Depends}
 Suggests: fdisk | util-linux (<< 2.29.2-3~)
 Description: User-level tools for ReiserFS filesystems
  This package contains utilities to create, check, resize, and debug
  ReiserFS filesystems.
 
-Package: reiserfsprogs-udeb
-XC-Package-Type: udeb
-Section: debian-installer
+Package: libreiserfscore0
 Architecture: linux-any
-#Depends: e2fsprogs-udeb, libc6-udeb (>= 2.22), libuuid1-udeb (>= 2.20.1), ${misc:Depends}, mkreiserfs-udeb
-Depends: ${shlibs:Depends}, ${misc:Depends}, mkreiserfs-udeb
-XB-Installer-Menu-Item: 99999
-Description: User-level tools for ReiserFS filesystems
- This installer module contains utilities to check, resize, and debug
- ReiserFS filesystems.
+Section: libs
+Depends: ${misc:Depends}, ${shlibs:Depends}
+Description: ReiserFS core library
+ The ReiserFS core library allows system programs like btrfs-progs to
+ access and convert ReiserFS filesystems. Without implementing all
+ ReiserFS code itself.
 
-Package: mkreiserfs-udeb
-XC-Package-Type: udeb
-Section: debian-installer
-Depends: ${shlibs:Depends}, ${misc:Depends}
+Package: libreiserfscore-dev
 Architecture: linux-any
-Description: User-level tools for ReiserFS filesystems
- This installer module contains the utility to create ReiserFS filesystems.
+Section: libdevel
+Depends: libreiserfscore0 (=${binary:Version}), ${misc:Depends}
+Description: ReiserFS core library - headers
+ The ReiserFS core library allows system programs like btrfs-progs to
+ access and convert ReiserFS filesystems. Without implementing all
+ ReiserFS code itself.
+ .
+ This package contains the development environment for the reiserfscore library.
