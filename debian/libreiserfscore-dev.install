@@ -1,0 +1,4 @@
+usr/include/reiserfs
+usr/lib/*/libreiserfscore.a
+usr/lib/*/libreiserfscore.so
+usr/lib/*/pkgconfig/reiserfscore.pc

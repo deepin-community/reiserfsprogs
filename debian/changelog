@@ -1,9 +1,34 @@
+reiserfsprogs (1:3.6.27-7) unstable; urgency=medium
+
+  * Remove udebs. Acked by Cyril Brulebois and Steve McIntyre on d-boot
+    ReiserFS has been deprecated upstream and scheduled for removal
+    2025.
+
+ -- Felix Zielcke <fzielcke@z-51.de>  Wed, 20 Sep 2023 18:33:40 +0200
+
+reiserfsprogs (1:3.6.27-6) unstable; urgency=medium
+
+  * Upload to unstable.
+
+ -- Felix Zielcke <fzielcke@z-51.de>  Tue, 13 Jun 2023 17:26:02 +0200
+
+reiserfsprogs (1:3.6.27-5) experimental; urgency=medium
+
+  * Build and ship libreiserfsprogs. (Closes: #1031342)
+  * Bump policy to 4.6.2.
+  * Rewrite d/copyright in copyright-format 1.0.
+  * Add Rules-Requires-Root: no.
+  * Update watch file to use version 4 and verify upstream signature.
+
+ -- Felix Zielcke <fzielcke@z-51.de>  Fri, 17 Feb 2023 15:12:18 +0100
+
 reiserfsprogs (1:3.6.27-4) unstable; urgency=medium
 
   * Update to debhelper compat level 13.
   * Bump Standards-Version to 4.5.0.
   * Build without libreiserfscore. And don't install any related files.
-    Probable there will never be any user of it. (Closes: #968491)
+    Probable there will never be any user of it. Thanks for the report
+    + patch Pino Toscano! (Closes: #968491)
   * Install debugfs.reiserfs and tunefs.reiserfs symlinks.
   * Use "which" to check for update-initramfs in postinst. This fixes a
     lintian warning.
@@ -12,7 +37,7 @@ reiserfsprogs (1:3.6.27-4) unstable; urgency=medium
 
 reiserfsprogs (1:3.6.27-3) unstable; urgency=medium
 
-  * Add patch to fix build with newer glibc. (Closes: #916166) 
+  * Add patch to fix build with newer glibc. (Closes: #916166)
   * Remove "-std=gnu90" from CFLAGS. Not needed anymore.
   * Update to policy 4.2.1.
 
@@ -32,7 +57,7 @@ reiserfsprogs (1:3.6.27-2) unstable; urgency=medium
 reiserfsprogs (1:3.6.27-1) unstable; urgency=medium
 
   * New upstream release.
-  * Update to policy 4.1.1. 
+  * Update to policy 4.1.1.
   * Drop unnecassary build dependency on dh-autoreconf.
 
  -- Felix Zielcke <fzielcke@z-51.de>  Tue, 28 Nov 2017 09:29:15 +0100
